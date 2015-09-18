@@ -3,8 +3,27 @@ List of members for team 081
 Nicola Tangga
 
 Quoc Hung Tran
+   -Age: 190 years olds
+   -Role: coding, extra features
+   - Prefer branch: Chemical engineering
+ 
 
-Linh Vu
+Linh Vu:
+
+
+Brief introduction:
+
+Donuts
+ 
+Role in project:
+
+Uploader 
+ 
+Preferred branch of engineering: (e.g. civil, mechanical, etc)
+
+Electrical
+
+
 
 ANM Niaz Makhdum
 

@@ -1,6 +1,9 @@
 List of members for team 081
 
 Nicola Tangga
+My name is Nicola
+im 18 years old
+Preferred branch of engineering is civil.
 
 Quoc Hung Tran
    -Age: 190 years olds
@@ -27,6 +30,3 @@ Electrical
 
 ANM Niaz Makhdum
 
-My name is Nicola
-im 18 years old
-Preferred branch of engineering is civil.

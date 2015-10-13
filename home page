@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- Home Page --> 
+<html>
+  <head>
+    <style type="text/css">
+      html, body { height: 100%; margin: 0; padding: 0; }
+    </style>  
+      <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.indigo-blue.min.css" /> 
+      <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+      <link rel="stylesheet" href="css/design.css" />
+  </head>
+    
+  <body>
+      <!-- Always shows a header, even in smaller screens. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+    
+      <!-- Title --> 
+      <span class="mdl-layout-title">JUST DO IT!! </span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+    </div>
+  </header>
+    
+    <main class="mdl-layout__content">
+    <div class="page-content"><!-- Your content goes here -->
+ 
+        <div class="center"><img src="images/justdoit.jpg" onclick="location.href='file:///D:/AAA%20uni/sem%202/Mobile%20Apps/assignment/assignment%202/recordingPage.html'"></div>
+        
+        <div class="center"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="location.href='file:///D:/AAA%20uni/sem%202/Mobile%20Apps/assignment/assignment%202/recordingPage.html'"> Start Run </button>
+        </div>
+      
+        <div class="center"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="location.href='file:///D:/AAA%20uni/sem%202/Mobile%20Apps/assignment/assignment%202/view.html'"> Choose Route</button>
+        </div>
+        
+        <div class="center"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"     onclick="location.href='file:///D:/AAA%20uni/sem%202/Mobile%20Apps/assignment/assignment%202/instructions.html'"> Instructions </button>
+        </div>
+
+    </div>    
+  </main>
+ </body>
+</html>    

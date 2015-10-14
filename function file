@@ -47,3 +47,25 @@ function speed(){
 var totalDistance, totalTime;
 }
 }
+//display route
+var DisplayRoute 
+        DisplayRoute  = new google.maps.Polyline({
+        path: Route,    //depend on the route 
+        geodesic: true,
+	    strokeColor: '#40FF00',
+        strokeOpacity: 1.0,
+        strokeWeight: 2
+      });
+    DisplayRoute.setMap(map);   
+    
+//display auto-update event
+// Add a listener for the click event in the stop function
+ map.addListener('Stop', addLatLng);
+
+    
+function addLatLng(event) {
+  var Displaypath = poly.getPath();
+
+  // Because path is an MVCArray, we can simply append a new coordinate
+  // and it will automatically appear according to the route update
+  Displaypath.push(event.latLng);

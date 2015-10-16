@@ -48,7 +48,7 @@ var route = [ ];
     //display route
         var DisplayRoute 
                 DisplayRoute  = new google.maps.Polyline({
-                path: Route,    //depend on the route 
+                path: route,    //depend on the route 
                 geodesic: true,
                 strokeColor: '#40FF00',
                 strokeOpacity: 1.0,

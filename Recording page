@@ -53,8 +53,7 @@
     <div id="map"></div>
     
     <script>
-
-      function initialize() {
+     function initialize() {
           
           // making center current position
               
@@ -71,10 +70,21 @@
           mapTypeId: google.maps.MapTypeId.ROADMAP
         }
         var map = new google.maps.Map(mapCanvas, mapOptions)
-        }
-      }
+      
       google.maps.event.addDomListener(window, 'load', initialize);
+          
+               
         
+      var currentposition = {lat: latitude, lng: longitude}
+                    
+        var DisplayPosition = new google.maps.Marker({
+                position: currentposition,
+                map: map,
+                title: 'You are here'
+  });
+        
+          }
+      }
       
     </script>  
 

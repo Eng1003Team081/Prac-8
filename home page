@@ -26,16 +26,23 @@
     
     <main class="mdl-layout__content">
     <div class="page-content"><!-- Your content goes here -->
+        <div>&nbsp;</div> <!-- spacing --> 
  
-        <div class="center"><img src="images/justdoit.jpg" onclick="location.href='file:///D:/AAA%20uni/sem%202/Mobile%20Apps/assignment/assignment%202/recordingPage.html'"></div>
+        <div class="center"><img src="images/justdoit.jpg" ></div>
         
-        <div class="center"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="location.href='file:///D:/AAA%20uni/sem%202/Mobile%20Apps/assignment/assignment%202/recordingPage.html'"> Start Run </button>
-        </div>
-      
-        <div class="center"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="location.href='file:///D:/AAA%20uni/sem%202/Mobile%20Apps/assignment/assignment%202/view.html'"> Choose Route</button>
+        <div>&nbsp;</div> <!-- spacing --> 
+        
+        <div class="center" ><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="location.href='https://eng1003.eng.monash.edu/ih8xu/recordingPage.html'" style="height:100px;"> <font size="10">Start Run</font></button>
         </div>
         
-        <div class="center"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"     onclick="location.href='file:///D:/AAA%20uni/sem%202/Mobile%20Apps/assignment/assignment%202/instructions.html'"> Instructions </button>
+        <div>&nbsp;</div> <!-- spacing out the buttons --> 
+        
+        <div class="center"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="location.href='https://eng1003.eng.monash.edu/ih8xu/view.html'" style="height:100px;"> <font size="10">Choose Route</font></button>
+        </div>
+        
+        <div>&nbsp;</div> <!-- spacing out the buttons --> 
+        
+        <div class="center"><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"     onclick="location.href='https://eng1003.eng.monash.edu/ih8xu/instructions.html'"style="height:100px;"> <font size="10">Instructions</font> </button>
         </div>
 
     </div>    

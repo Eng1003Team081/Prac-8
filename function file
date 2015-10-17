@@ -1,8 +1,9 @@
-function JustDoItAppProcessor(){    
+//function JustDoItAppProcessor(){    
     
 var target, options;
 var id= null; //geolocation.watchposition not running yet
-var target =document.getElementById("message-area");    
+var target = document.getElementById("message-area");    
+    
     
 function success(pos) {
   var crd = pos.coords;
@@ -37,18 +38,23 @@ var route = [ ];
           return totalDistance;
         }
         
-         function time(){
-         totalTime =
+    function time(){
+        var myVar = setInterval(myTimer, 1000); //calls function myTimer every second(1000millisecond)
+        var time = 0;
+        function myTimer() {
+            time +=1 ;
+            document.getElementById("time").innerHTML = time;
+        }
          }
         
-         aveSpeed = totalDistance/totalTime;
+     aveSpeed = totalDistance/totalTime;
              
-        target.innerHTML = 'Time:' + totalTime + 's ' + ' distance:' + totalDistance + 'm' + 'average speed' + aveSpeed;   
+     target.innerHTML = ' distance:' + totalDistance + 'm' + 'average speed' + aveSpeed;   
              
     //display route
         var DisplayRoute 
                 DisplayRoute  = new google.maps.Polyline({
-                path: route,    //depend on the route 
+                path: Route,    //depend on the route 
                 geodesic: true,
                 strokeColor: '#40FF00',
                 strokeOpacity: 1.0,
@@ -67,7 +73,6 @@ var route = [ ];
           // Because path is an MVCArray, we can simply append a new coordinate
           // and it will automatically appear according to the route update
           Displaypath.push(event.latLng);         
-            
     }
 //recording stat       
 }
@@ -87,3 +92,4 @@ id = navigator.geolocation.watchPosition(success, error, options);
 
      
 }   
+//}

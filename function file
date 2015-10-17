@@ -22,34 +22,69 @@ function success(pos) {
 var route = [ ];
     route.push(getLocation);   
     
-//calculate speed        
-    function speed(){
-        var totalDistance, totalTime, aveSpeed;
-        
-          function distance(lon1, lat1, lon2, lat2) {
-          var R = 6371; // Radius of the earth in km
-          var dLat = (lat2-lat1).toRad();  // Javascript functions in radians
-          var dLon = (lon2-lon1).toRad(); 
-          var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                  Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
-                  Math.sin(dLon/2) * Math.sin(dLon/2); 
-          var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-          totalDistance = R * c; // Distance in km
-          return totalDistance;
-        }
-        
-    function time(){
-        var myVar = setInterval(myTimer, 1000); //calls function myTimer every second(1000millisecond)
+//global variables
+var timeInterval;
+var distanceInterval
+
+function startRun(){
+    var target = document.getElementById("message-area"); 
+    
+    //enable and disable buttons
+    document.getElementById("startRecord").disabled = true;
+    document.getElementById("stopRecord").disabled = false;
+    document.getElementById("clearRoute").disabled = false;
+    document.getElementById("saveRoute").disabled = false;  
+    
+    document.getElementById("recordingState").innerHTML = 'RECORDING';
+     
+
+    //calculate speed(distance/time)      
+    var totalDistance, totalTime, aveSpeed;
+       
+       //finding the total distance (http://stackoverflow.com/questions/14131708/get-driving-distance-between-two-longitude-latitude-points)
+    
+       distanceInterval = setInterval(distance,1000);//calls function distance every second(1000millisecond)
+       function distance(lon1, lat1, lon2, lat2) {
+         var R = 6371; // Radius of the earth in km
+         var dLat = (lat2-lat1).toRad();  // Javascript functions in radians
+         var dLon = (lon2-lon1).toRad(); 
+         var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                 Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * 
+                 Math.sin(dLon/2) * Math.sin(dLon/2); 
+         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+         totalDistance += R * c; // Distance in km
+         document.getElementById("distance").innerHTML = totalDistance + 'm';   
+         return totalDistance;
+       }
+
+        //finding the time    
+        timeInterval = setInterval(myTimer, 1000); //calls function myTimer every second(1000millisecond)
         var time = 0;
         function myTimer() {
             time +=1 ;
-            document.getElementById("time").innerHTML = time;
+            document.getElementById("time").innerHTML = time + 's';
         }
-         }
-        
-     aveSpeed = totalDistance/totalTime;
              
-     target.innerHTML = ' distance:' + totalDistance + 'm' + 'average speed' + aveSpeed;   
+         aveSpeed = totalDistance/totalTime;
+
+         target.innerHTML =' Average speed:' + aveSpeed +' m/s';   
+    }
+
+
+function stopRun(){
+ //enable and disable buttons
+    document.getElementById("startRecord").disabled = false;
+    document.getElementById("stopRecord").disabled = true;
+    document.getElementById("clearRoute").disabled = false;
+    document.getElementById("saveRoute").disabled = false;  
+    
+    //display recording state
+    document.getElementById("recordingState").innerHTML = 'STOP';
+    
+    //stopping interval
+    clearInterval(timeInterval);
+    clearInterval(distanceInterval);
+} 
              
     //display route
         var DisplayRoute 

@@ -29,9 +29,9 @@
     <div class="page-content"><!-- Your content goes here -->
         <h1 class="center"> 
             HOW TO USE 'JUST DO IT' APP... </h1>
-        <p class="center"> At home page, you can either start running by pressing <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="location.href='file:///D:/AAA%20uni/sem%202/Mobile%20Apps/assignment/assignment%202/recordingPage.html'"> Start Run </button> or you can select a route by pressing<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="location.href='file:///D:/AAA%20uni/sem%202/Mobile%20Apps/assignment/assignment%202/view.html'"> Choose Route</button></p>
+        <p class="center"> At the home page, you can either start running by pressing <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="location.href='file:///D:/AAA%20uni/sem%202/Mobile%20Apps/assignment/assignment%202/recordingPage.html'"> Start Run </button> or you can select a route by pressing<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="location.href='file:///D:/AAA%20uni/sem%202/Mobile%20Apps/assignment/assignment%202/view.html'"> Choose Route</button></p>
         <p class="center">When selecting the 'Start Run' button, you can start and stop the run which will then record where you go as well as how long it takes for you to get there. </p>
-        <p class="center">This can either be cleared, which will erase the route taken, or be saved.</p>
+        <p class="center">This route can either be cleared, which will erase the route taken, or be saved.</p>
         <p class="center">If you choose to save the route, it will take you to 'Choose Route' page which you can then name your route. This route can be chosen in the future.</p>
         <p class="center"><strong>Now that you know how to use this app, you can now run! JUST DO IT!</strong><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="location.href='file:///D:/AAA%20uni/sem%202/Mobile%20Apps/assignment/assignment%202/recordingPage.html'"> Start Run </button></p>
  

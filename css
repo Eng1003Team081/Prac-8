@@ -1,0 +1,15 @@
+/* making buttons, images etc go to the center */
+.center{
+   text-align:center;
+   vertical-align:middle;
+}
+
+/* background colour*/
+body {
+    background-color: #D1F0FF;
+}
+
+/* for instruction page*/
+p{
+    font-size: 2em;
+}

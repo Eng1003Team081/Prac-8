@@ -80,13 +80,33 @@
               mapTypeId: google.maps.MapTypeId.ROADMAP
             }
             var map = new google.maps.Map(mapCanvas, mapOptions)
-            
+            var marker = null;
             //creating marker
-            var marker = new google.maps.Marker({
-                position: myLatLng,
-                map: map,
-                title: 'Starting point'
+               marker = new google.maps.Marker({
+               position: myLatLng,
+               map: map
+               title: 'Starting point'
                });
+    if document.getElementById("stopRecord").disabled = true;
+      // program is recording, marker will move
+      marker.setPosition(myLatLng);
+    }
+    else {
+      // Marker stop ( create new marker at ending point)
+        marker = new google.maps.Marker({
+        position: newPoint,
+        map: map
+        title: 'Ending point'
+        });
+    }
+
+  }); 
+
+  // Call the autoUpdate() function every 1 seconds
+  setTimeout(autoUpdate, 1000);
+}
+
+autoUpdate();
             }
       }
          

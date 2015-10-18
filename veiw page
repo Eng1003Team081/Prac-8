@@ -1,37 +1,92 @@
-<!DOCTYPE html>
-<!-- Choosing route Page --> 
+<!-- Recording Page --> 
 <html>
   <head>
     <style type="text/css">
       html, body { height: 100%; margin: 0; padding: 0; }
+      #map { height: 100%; }
+        ol.u {list-style-type: none;}
+    
+        
+        
     </style>  
       <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.indigo-blue.min.css" /> 
       <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-      <link rel="stylesheet" href="css/design.css" />
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
   </head>
-    
   <body>
+    
       <!-- Always shows a header, even in smaller screens. -->
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="location.href='https://eng1003.eng.monash.edu/ih8xu/home.html'">
-      <i class="material-icons">home</i>
-      </button>
-        
+    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+    <i class="material-icons">view page</i>
+    </button>       
       <!-- Title --> 
-      <span class="mdl-layout-title">JUST DO IT!! </span>
+        <span class="mdl-layout-title">JUST DO IT!! </span>
       <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
     </div>
   </header>
-    
-    <main class="mdl-layout__content">
+  
+  <main class="mdl-layout__content">
     <div class="page-content"><!-- Your content goes here -->
-
-
+ 
+        <!-- Buttons --> 
+        <ol class="u">
+        <div id="functions">
+            <li></li>
+            <li> <button id="userprofil" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="width:120px;height:200px;" onclick=""> <img src= "https://image.freepik.com/free-icon/user-male-shape-in-a-circle--ios-7-interface-symbol_318-35357.jpg" style= "width:80px;height:70px"> Username </button></li>
+             <li>    <button id="saveRoute" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="width:120px;height:150px;" onclick="">Best run
+                 <h7> Time: </h7><label id="time"></label>
+        <h7> Distance:</h7><label id="distance"></label><h7>m</h7>
+        <h7> Speed:</h7><label id="speed"></label><h7>m/s</h7></button>      </li> 
+            
+            <li>  <button id="savedruns" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="width:120px;height:200px;" onclick="">Saved Runs
+                <ol>
+                <li>Run 1</li>
+                <li>Run 2</li>
+                <li>Run 3</li>
+                <li>Run 4</li></ol></button></li>
+            <li>   <button id="clearRoute" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="width:120px;height:70px;" onclick="">Delete Run</button></li>
+           
+        
     </div>    
+      </ol>
+        <h7> Time: </h7><label id="time"></label>
+        <h7> Distance:</h7><label id="distance"></label><h7>m</h7>
+        <h7> Speed:</h7><label id="speed"></label><h7>m/s</h7>
+            </div>
   </main>
- </body>
-</html>    
+    
+    <!-- map --> 
+    <div id="map"></div>
+    <script type="text/javascript">
+    
+          window.navigator.geolocation.getCurrentPosition(function(pos) { 
+          var currentLat = pos.coords.latitude;
+          var currentLng = pos.coords.longitude;
+        
+        var mapCanvas = document.getElementById('map');
+        var mapOptions = {
+          center: {lat: currentLat, lng:currentLng},
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(mapCanvas, mapOptions)
+        
+      google.maps.event.addDomListener(window, 'load', initialize);
+          });
+
+           </script>
+      <script async defer
+  src="https://maps.googleapis.com/maps/api/js?v=3&amp;key=&amp;callback=initMap">
+    </script>
+
+<!-- linking javascript -->     
+ <!-- <script src="js/JustDoItAppProcessor.js"></script>-->
+      
+      
+  </body>
+</html>

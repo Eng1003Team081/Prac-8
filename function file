@@ -119,7 +119,27 @@ function stopRun(){
 
 //Clear Function
 
+    function autoUpdate() { 
+        var trackmarker = null;
+        //creating marker variable 
+    if (document.getElementById("stopRecord").disabled = true) {
+      // program is recording, marker will move
+      trackmarker.setPosition(myLatLng);
+    }
+    else {
+      // Marker stop ( create new marker at ending point)
+        trackmarker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: 'Ending point'
+        });
+    }
 
+   
+
+  // Call the autoUpdate() function every 1 seconds
+  setTimeout(autoUpdate, 1000);
+        }
 
 
 

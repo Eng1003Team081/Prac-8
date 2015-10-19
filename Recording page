@@ -94,7 +94,7 @@
     else {
       // Marker stop ( create new marker at ending point)
         marker = new google.maps.Marker({
-        position: newPoint,
+        position: myLatLng,
         map: map
         title: 'Ending point'
         });

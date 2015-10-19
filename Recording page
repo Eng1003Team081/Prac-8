@@ -34,13 +34,13 @@
  
         <!-- Buttons --> 
         <div id="functions">
-            <button id="startRecord" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="height:70px;" onclick="startRun()"> <i class="material-icons">directions_run</i><font size="5">RUN!!</font> </button>
+            <button id="startRecord" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="height:70px;" onclick="startRun()"> <i class="material-icons">directions_run</i><font size="5">RUN</font> </button>
             
-            <button id="stopRecord" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="height:70px;" onclick="stopRun()"><font size="5">STOP RUN!!</font></button>
+            <button id="stopRecord" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="height:70px;" onclick="stopRun()"><font size="5">STOP RUN</font></button>
             
-            <button id="clearRoute" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="height:70px;" onclick="(insert clear route function)"><font size="5">CLEAR RUN!!</font></button>
+            <button id="clearRoute" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="height:70px;" onclick="(insert clear route function)"><font size="5">CLEAR RUN</font></button>
             
-            <button id="saveRoute" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="height:70px;" onclick="(insert save route function)"><font size="5">SAVE RUN!!</font></button>      
+            <button id="saveRoute" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="height:70px;" onclick="(insert save route function)"><font size="5">SAVE RUN</font></button>      
             
         <!-- Displaying time, distance and speed --> 
         <h7>Time:</h7> 
@@ -72,6 +72,7 @@
             var latitude = position.coords.latitude;
             var longitude = position.coords.longitude;
             var myLatLng = {lat: latitude, lng: longitude};
+            var initialLocation= myLatLng;
               
             var mapCanvas = document.getElementById('map');
             var mapOptions = {
@@ -87,14 +88,22 @@
                map: map
                title: 'Starting point'
                });
-    if document.getElementById("stopRecord").disabled = true;
+    if document.getElementById("stopRecord").disabled = true{
       // program is recording, marker will move
-      marker.setPosition(myLatLng);
+        var currentcoord, initialcoord;
+        marker.setPosition(myLatLng);
+        if document.getElementById("saveRoute").disabled = true;
+        localStorage.setItem(currentcoord,JSON.stringify(myLatLng));
+        localStorage.setItem(initialcoord,JSON.stringify(initialLocation));
+        
+        
+             
+              
     }
     else {
       // Marker stop ( create new marker at ending point)
         marker = new google.maps.Marker({
-        position: myLatLng,
+        position: newPoint,
         map: map
         title: 'Ending point'
         });

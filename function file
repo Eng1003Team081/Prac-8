@@ -165,3 +165,27 @@ function startRun() {
         document.getElementById("distance").innerHTML = "--";
 
     };
+
+function movingmarker() {
+        document.getElementById("startRecord").disabled = true;
+        document.getElementById("stopRecord").disabled = false;
+        document.getElementById("clearRoute").disabled = false;
+        document.getElementById("saveRoute").disabled = false;
+    
+    markerArray = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: ' You are currently here '
+    });
+    markers.push(markerArray);
+
+var pathcoordinates = markerArray;
+    
+var displayroute = new google.maps.Polyline({
+    path: pathcoordinates,
+    geodesic: true,
+    strokeColor: '#40FF00',
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+    )}
+displayroute.setMap(map);

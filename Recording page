@@ -40,7 +40,7 @@
             
             <button id="clearRoute" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="height:70px;" onclick="(insert clear route function)"><font size="5">CLEAR RUN</font></button>
             
-            <button id="saveRoute" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="height:70px;" onclick="(insert save route function)"><font size="5">SAVE RUN</font></button>      
+            <button id="saveRoute" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="height:70px;" onclick="saveRun()"><font size="5">SAVE RUN</font></button>      
             
         <!-- Displaying time, distance and speed --> 
         <h7>Time:</h7> 

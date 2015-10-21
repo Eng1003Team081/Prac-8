@@ -1,46 +1,44 @@
-/*to-do-list
-- get locations to work
-- clearing the markers
-*/
 //global variables
 var timeInterval;
-var distanceInterval;
-var markerArray = [];
 var route = [];
-var path = [];
-var latitude, longitude, myLatLng;
-var totalDistance;
+var totalDistance =0;
 var time = 0;
-Number.prototype.toRad = function () { return this * Math.PI / 180; }
+var aveSpeed =0;
+var id, options;
+Number.prototype.toRad = function() {
+    return this * Math.PI / 180;
+}
 
-//save run
-function saveRun(){
-    window.alert("Run saved");
+//options for watch position
+options = {
+  enableHighAccuracy: false,
+  timeout: 5000,
+  maximumAge: 0
+};
 
+//error function for watch position
+function error(err) {
+  console.warn('ERROR(' + err.code + '): ' + err.message);
 }
 
 function current(position) {
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
 
     //gathering the data    
     var getLocation = {
-        lat: latitude,
-        lng: longitude,
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
         acc: position.coords.accuracy,
     };
+    
+    document.getElementById("accuracy").innerHTML = 'within a ' + getLocation.acc.toFixed(1) + 'm radius';
 
     //create array of locations to create route
     route.push(getLocation);
-    console.log('route:'+route);
-    
-//calculate speed(distance/time)     
-//finding the total distance (http://stackoverflow.com/questions/14131708/get-driving-distance-between-two-longitude-latitude-points)
 
-    totalDistance = 0;
+    //calculate speed(distance/time)     
+    //finding the total distance 
     for (var i = 1; i < route.length; i++) {
         var l1 = route[i - 1];
-        console.log('l1:'+l1);
         var l2 = route[i];
         totalDistance += distance(l1.lat, l1.lng, l2.lat, l2.lng);
     }
@@ -50,34 +48,32 @@ function current(position) {
     document.getElementById("speed").innerHTML = aveSpeed.toFixed(2) + ' m/s';
 
     //creating markers for route
-path.push( new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
-    //var image = 'images/run.png';
+    var image = 'images/run.png';
     var runMarker = new google.maps.Marker({
-        position: path[path.length - 1],
+        position: route[route.length - 1], //get the last data from array route
         map: map,
         title: "You are here! ",
-        //icon: image
-        });
-    runMarker.setPosition(path[path.length - 1]);
-    
+        icon: image
+    });
+    runMarker.setPosition(route[route.length - 1]);
+
     // Create polyline
     var polyline = new google.maps.Polyline({
         map: map,
-        path: path,
+        path: route,
         strokeColor: '#0000FF',
         strokeOpacity: 0.7,
         strokeWeight: 1
     });
-    
 }
 
- //finding the time    
-
+//function for finding the time    
 function myTimer() {
-        time += 1;
-        document.getElementById("time").innerHTML = time + 's';
-    };    
+    time += 1;
+    document.getElementById("time").innerHTML = time + 's';
+};
 
+//function for finding the distance (http://stackoverflow.com/questions/14131708/get-driving-distance-between-two-longitude-latitude-points)
 function distance(lon1, lat1, lon2, lat2) {
 
     var R = 6371000; // Radius of the earth in m
@@ -87,7 +83,7 @@ function distance(lon1, lat1, lon2, lat2) {
         Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) *
         Math.sin(dLon / 2) * Math.sin(dLon / 2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    totalDistance = R * c; // Distance in km
+    totalDistance = Math.abs(R * c); // Distance in m
     document.getElementById("distance").innerHTML = totalDistance.toFixed(2) + 'm';
     return totalDistance;
 }
@@ -102,82 +98,51 @@ function startRun() {
 
     //display recording state
     document.getElementById("recordingState").innerHTML = 'RECORDING';
-    
-    timeInterval= setInterval(myTimer,1000);
-    
-    navigator.geolocation.watchPosition(current);
 
-    };
+    //starting the timer
+    timeInterval = setInterval(myTimer, 1000);
 
+    //calling current everytime the position is changed
+    id = navigator.geolocation.watchPosition(current, error, options);
 
-
-    //function is called when the button STOP is pressed
-    function stopRun() {
-        //enable and disable buttons
-        document.getElementById("startRecord").disabled = false;
-        document.getElementById("stopRecord").disabled = true;
-        document.getElementById("clearRoute").disabled = false;
-        document.getElementById("saveRoute").disabled = false;
-
-        //display recording state
-        document.getElementById("recordingState").innerHTML = 'STOP RECORDING';
-
-        //stopping interval
-        clearInterval(timeInterval);
-        clearInterval(distanceInterval);
-
-        //End marker
-           /*     var mapCanvas = document.getElementById('map');
-                var mapOptions = {
-                    center: {
-                        lat: latitude,
-                        lng: longitude
-                    },
-                    zoom: 18,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                }
-
-                //creating marker of starting point
-                var map = new google.maps.Map(mapCanvas, mapOptions)
-                var endMarker = null;
-                //creating marker
-                startMarker = new google.maps.Marker({
-                    position: myLatLng,
-                    map: map,
-                    title: "End point"
-                });*/
-            }
-        //}
-
-    //};
+};
 
 
-    //function is called when the CLEAR button is pressed
-    function clearRun() {
-        //enable and disable buttons
-        document.getElementById("startRecord").disabled = false;
-        document.getElementById("stopRecord").disabled = true;
-        document.getElementById("clearRoute").disabled = true;
-        document.getElementById("saveRoute").disabled = false;
 
-        //Removing markers
-        /* function clearMarkers() {
-             for (var i = 0; i < markers.length; i++) {
-                 markers[i].setMap(null);
-                 }
-             markers = [];
-         }
-         clearMarkers(); */
+//function is called when the button STOP is pressed
+function stopRun() {
+    //enable and disable buttons
+    document.getElementById("startRecord").disabled = false;
+    document.getElementById("stopRecord").disabled = true;
+    document.getElementById("clearRoute").disabled = false;
+    document.getElementById("saveRoute").disabled = false;
 
-        //stopping intervals
-        clearInterval(timeInterval);
-        clearInterval(distanceInterval);
+    //display recording state
+    document.getElementById("recordingState").innerHTML = 'STOP RECORDING';
 
-        //displaying null
-        document.getElementById("speed").innerHTML = "--";
-        document.getElementById("time").innerHTML = "--";
-        document.getElementById("distance").innerHTML = "--";
+    //stopping interval
+    clearInterval(timeInterval);
+}
 
-    };
+//function is called when the CLEAR button is pressed
+function clearRun() {
+    //enable and disable buttons
+    document.getElementById("startRecord").disabled = false;
+    document.getElementById("stopRecord").disabled = true;
+    document.getElementById("clearRoute").disabled = true;
+    document.getElementById("saveRoute").disabled = false;
 
+    //Removing markers
+    //clearMarkers(); 
 
+    //stopping intervals
+    clearInterval(timeInterval);
+    time = 0;
+    navigator.geolocation.clearWatch(id);
+
+    //displaying null
+    document.getElementById("speed").innerHTML = "--";
+    document.getElementById("time").innerHTML = "--";
+    document.getElementById("distance").innerHTML = "--";
+    document.getElementById("accuracy").innerHTML = "--";
+};

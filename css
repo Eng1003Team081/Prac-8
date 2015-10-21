@@ -13,3 +13,12 @@ body {
 p{
     font-size: 2em;
 }
+
+/*for recording page */
+#display, #recordingState{
+    font-size: 2em;
+}
+
+#startRecord, #stopRecord, #clearRoute, #saveRoute{
+    height: 70px;
+}

@@ -49,12 +49,24 @@ function current(position) {
     document.getElementById("speed").innerHTML = aveSpeed.toFixed(2) + ' m/s';
 
     //creating markers for route
-    /*var image = 'images/run.png';
+    var image = 'images/run.png';
     var runMarker = new google.maps.Marker({
-        position: myLatLng,
+        position: route[route.length - 1],    //get the last data from array route
         map: map,
+        title: "You are here! ",
         icon: image
-        }); */
+        });
+    runMarker.setPosition(route[route.length - 1]);
+    
+    // Create polyline
+    var polyline = new google.maps.Polyline({
+        map: map,
+        path: route,
+        strokeColor: '#0000FF',
+        strokeOpacity: 0.7,
+        strokeWeight: 1
+    });
+    
 }
 
  //finding the time    

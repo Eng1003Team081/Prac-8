@@ -9,7 +9,7 @@
       <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.5/material.indigo-blue.min.css" /> 
       <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
       <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-      <script src="https://maps.googleapis.com/maps/api/js"></script>
+      <link rel="stylesheet" href="css/design.css" />
 
   </head>
   <body>
@@ -29,26 +29,34 @@
   </header>
   
   <main class="mdl-layout__content">
-    <div id="recordingState"><font size="5">Not recording</font></div>      
+        
   <div class="page-content"><!-- Your content goes here -->
- 
+      
+        <div id="recordingState">Not recording</div>  
+        <div>&nbsp;</div> <!-- spacing --> 
+      
         <!-- Buttons --> 
         <div id="functions">
-            <button id="startRecord" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="height:70px;" onclick="startRun()"> <i class="material-icons">directions_run</i><font size="5">RUN</font> </button>
+            <button id="startRecord" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="startRun()"> <i class="material-icons">directions_run</i>RUN</button>
             
-            <button id="stopRecord" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="height:70px;" onclick="stopRun()"><font size="5">STOP RUN</font></button>
+            <button id="stopRecord" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="stopRun()"><font size="5">STOP RUN</font></button>
             
-            <button id="clearRoute" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="height:70px;" onclick="(insert clear route function)"><font size="5">CLEAR RUN</font></button>
+            <button id="clearRoute" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="clearRun()"><font size="5">CLEAR RUN</font></button>
             
-            <button id="saveRoute" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" style="height:70px;" onclick="saveRun()"><font size="5">SAVE RUN</font></button>      
+            <button id="saveRoute" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="(insert save route function)"><font size="5">SAVE RUN</font></button>      
             
         <!-- Displaying time, distance and speed --> 
-        <h7>Time:</h7> 
-        <h7 id="time"></h7>
-        <h7>Distance:</h7> 
-        <h7 id="distance"></h7>      
-        <h7 id="message-area" ></h7>
-          
+            <div>&nbsp;</div> <!-- spacing --> 
+            <div id="display">
+              <h7>Time:</h7> 
+                <h7 id="time"></h7>
+              <h7>Distance:</h7> 
+                <h7 id="distance"></h7>    
+              <h7>Speed:</h7>     
+                <h7 id="speed" ></h7>
+              <h7>Accuracy:</h7>     
+                <h7 id="accuracy" ></h7>   
+            </div>
         </div>
     </div>  
     
@@ -58,85 +66,51 @@
     <div id="map"></div>
     
     <script> //script is for before a run is made
+        
     //disable buttons that can't be used    
     document.getElementById("stopRecord").disabled = true;
     document.getElementById("clearRoute").disabled = true;
     document.getElementById("saveRoute").disabled = true;    
-    //this function will display a map with the current position before the run starts    
-    function initialise() {
+    
+    var mapCanvas;
+    var mapOptions;  
         
-          navigator.geolocation.getCurrentPosition(current);
+    //this function will display a map with the current position before the run starts  
+    function initialise() {
+        navigator.geolocation.getCurrentPosition(current);
           
            // making center current position
           function current(position){
             var latitude = position.coords.latitude;
             var longitude = position.coords.longitude;
             var myLatLng = {lat: latitude, lng: longitude};
-            var initialLocation= myLatLng;
               
-            var mapCanvas = document.getElementById('map');
-            var mapOptions = {
+             mapCanvas = document.getElementById('map');
+             mapOptions = {
               center: {lat:latitude, lng:longitude},
               zoom: 18,
               mapTypeId: google.maps.MapTypeId.ROADMAP
             }
+            
+            //creating marker of starting point
             var map = new google.maps.Map(mapCanvas, mapOptions)
-            var marker = null;
+            var startMarker = null;
             //creating marker
-               marker = new google.maps.Marker({
+               startMarker = new google.maps.Marker({
                position: myLatLng,
-               map: map
-               title: 'Starting point'
+               map: map,
+               title: "Starting point",
                });
-    if document.getElementById("stopRecord").disabled = true{
-      // program is recording, marker will move
-        var currentcoord, initialcoord;
-        marker.setPosition(myLatLng);
-        if document.getElementById("saveRoute").disabled = true;
-        localStorage.setItem(currentcoord,JSON.stringify(myLatLng));
-        localStorage.setItem(initialcoord,JSON.stringify(initialLocation));
-        
-        
-             
-              
+          }
+               
     }
-    else {
-      // Marker stop ( create new marker at ending point)
-        marker = new google.maps.Marker({
-        position: newPoint,
-        map: map
-        title: 'Ending point'
-        });
-    }
-
-  }); 
-
-  // Call the autoUpdate() function every 1 seconds
-  setTimeout(autoUpdate, 1000);
-}
-
-autoUpdate();
-            }
-      }
-         
-      // To add the marker to the map, call setMap();
-      marker.setMap(map);    
-      //adding the map    
-      google.maps.event.addDomListener(window, 'load', initialise); 
-      
-      
-      
+        
     </script>  
 
-    <script async defer
-  src="https://maps.googleapis.com/maps/api/js?v=3&amp;key=&amp;callback=initialise">
-    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?v=3&amp;key=&amp;callback=initialise"></script>
 
       <!-- linking javascript-->
       <script src="js/startRun.js"></script>
-
-
-      
-      
+    
   </body>
 </html>
